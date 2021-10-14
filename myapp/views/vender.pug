@@ -1,0 +1,187 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous')
+
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl' crossorigin='anonymous')
+  title Document
+  style.
+    #entry {
+    background-color: rgb(46, 70, 177);
+    border-radius: 5px;
+    /*        position: absolute;*/
+    margin-left: 50%;
+    padding: 8px;
+    padding-left: 50px;
+    padding-right: 50px;
+    }
+    .sc-container {
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-left: 10%;
+    }
+    #city {
+    border-radius: 5px;
+    position: absolute;
+    color: black;
+    border-radius: 10px;
+    padding: 8px;
+    padding-right: 90px;
+    padding-left: 90px;
+    }
+    #btn:hover {
+    background-color: gray;
+    }
+    .topnav {
+    background-color: #333;
+    overflow: hidden;
+    }
+    /* Style the links inside the navigation bar */
+    .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    }
+    /* Change the color of links on hover */
+    .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+    /* Add a color to the active/current link */
+    .topnav a.active {
+    background-color: #4caf50;
+    color: white;
+    }
+    #out {
+    float: right;
+    }
+    #display {
+    width: 1000px;
+    border: 1px solid green;
+    padding: 50px;
+    margin: 20px;
+    margin-top: 80px;
+    margin-left: 100px;
+    }
+.topnav
+  a.active(href='/home') Home
+  a(href='#deshboard') Deshboard
+  a(href='#agent') Agent
+  a(href='#cities') Cities
+  a#out(href='#index') logout
+.sc-container(action="autherer" method='POST')
+  h1 Venders
+    //- (action="" name="users" onchange="showUser(this.value)")  
+  input#name(type='text' name='name' placeholder='name')
+  input#email(type='email' name='email' placeholder='email')
+  input#phone(type='number' name='phone' placeholder='phone No')
+  input#entry(type='submit' onclick="sendData()")
+  //- form(action='auther' method='POST')
+   input#city(type='text' placeholder='city')
+   input#entry(type='submit')
+table#display(border='')
+  thead
+    tr
+      th name
+      th email
+      th phone No
+script.
+  //- form.addEventListener( "click", function ( event ) {
+  //- event.preventDefault();
+  //- //- sendData();
+  //- });
+  function sendData(){
+     
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+     
+    var rawData = {Name:'', Email:'', Phone:''};
+    rawData.Name = name;
+    rawData.Email = email;
+    rawData.Phone = phone;
+    console.log(rawData);
+    
+    
+    var url = "http://localhost:3000/autherer";
+    $.post(url, rawData , function(response){
+      //- $('#display').innerHTML(rawData);
+      console.log("successfully send ");
+    })
+    //- var type = "GET",
+    //-  dataType = "html",
+    //-  success= function (rawData){
+    //-      $('#display').html($('#display',rawData).html());
+    //-      // similar to $(data).find('#showresults')
+    //-  }
+     $.get( "http://localhost:3000/autherer", function( data ) {
+      $( "#display" ).html( data );
+      alert( "Load was performed." );
+    }); 
+  
+    //- var ajax = new XMLHttpRequest();
+    //- var method = "POST";
+    //- var url = "http://localhost:3000/autherer";
+    //- var asynchronous = true;
+    //- ajax.onreadystatechange = function(){
+    //-   if(ajax.readyState === 4){
+    //-     document.getElementById('entry');
+    //-   }
+    //- };
+    //- ajax.open(method, url, asynchronous);
+    //- ajax.send(rawData);
+    
+
+    
+
+  //- form.addEventListener( "submit", function ( event ) {
+  
+  //- sendData();
+  //- });
+  //- ajax.onreadystattechange = function()
+  //- {
+  //- if(this.readyState == 4 && this.status ==200)
+  //- {
+  //- var data = JSON.parse(this.responseText);
+  //- console.log(data);
+    //- var html = "";
+    //- for(var a=0; a < rawData.length; a++){
+    //- var name = rawData(a).name;
+    //- var email = rawData(a).email;
+    //- var phone = rawData(a).phone;
+    //- html += "<tr>";
+    //-   html+= "<th>" + name + "<th>";
+    //-   html+= "<th>" + email + "<th>";
+    //-   html+= "<th>" + phone + "<th>";
+    //- html += "<tr>";
+    //- document.getElementById("display").innerHTML = html;
+    //- }
+    return;
+    } 
+
+
+
+   //-   var form = $('.sc-container');
+     
+  //-     var url: "http://localhost:3000/index";
+  //-     var type: 'POST';
+       
+
+      
+    
+  //-    posting = $.post( url, data );
+  //-    posting.done(function( data ) {
+  //-    content = $( data ).find( "#content" );
+  //-   $( "#result" ).empty().append( content );
+  //- });
+
+  //- }
+
+  
+
+ 

@@ -1,0 +1,162 @@
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl' crossorigin='anonymous')
+  title Document
+  style.
+    #btn {
+    background-color: rgb(46, 70, 177);
+    border-radius: 5px;
+    position: absolute;
+    margin-left: 50%;
+    padding: 8px;
+    padding-left: 50px;
+    padding-right: 50px;
+    }
+    .sc-container {
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-left: 10%;
+    }
+    #inp {
+    border-radius: 5px;
+    position: absolute;
+    color: black;
+    border-radius: 10px;
+    padding: 8px;
+    padding-right: 90px;
+    padding-left: 90px;
+    }
+    #btn:hover {
+    background-color: gray;
+    }
+    .topnav {
+    background-color: #333;
+    overflow: hidden;
+    }
+    /* Style the links inside the navigation bar */
+    .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    }
+    /* Change the color of links on hover */
+    .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+    #display {
+    width: 1000px;
+    border: 1px solid green;
+    padding: 50px;
+    margin: 20px;
+    margin-top: 80px;
+    margin-left: 100px;
+    }
+    /* Add a color to the active/current link */
+    .topnav a.active {
+    background-color: #4caf50;
+    color: white;
+    }
+    #out {
+    float: right;
+    }
+.topnav
+  a.active Tour Packages
+  a(href='/deshboard') Deshboard
+  a(href='#agent') Agent
+  a(href='/vender') Vender
+  a(href='#cities') Cities
+  a#out(href='#index') logout
+.sc-container(action="auther" method='POST')
+  h1 Add City 
+  //- form(action='auther' method='POST')
+  input#city(type='text' name='city' placeholder='city')
+  input#entry(type='submit' onclick='sendData()')
+table#display(border='')
+  thead
+    tr
+      th city 
+       
+
+
+script.
+  function sendData(){
+    var city = document.getElementById('city').value;
+    var rawData = {City:''};
+    rawData.City = city; 
+    console.log(rawData);
+    
+    
+    var url = "http://localhost:3000/auther";
+    $.post(url, rawData , function(response){
+      //- $('#display').innerHTML(rawData);
+      console.log("successfully send ");
+      console.log(response);
+    });
+
+    //- $.get( "http://localhost:3000/auther", function( data ) {
+    //-   $( "#display" ).html( data );
+    //-   alert( "Load was performed." );
+    //- });
+  
+    //- var ajax = new XMLHttpRequest();
+    //- $.ajax({
+    //-  method: 'GET',
+    //-  url: 'http://localhost:3000/auther',
+    //-  data: SOME_DATA,
+    //-  success: function(res) {
+    //-  var assignments = res.data;
+    //-  var body = [];
+
+    //- assignments.forEach(function(assignment) {
+    //-   var tr = $('<tr/>');
+    //-   tr.append($('<td/>').html('<a href="blah-blah">' + assignment.City + '</a>');
+    //-   //- tr.append($('<td/>').html('<a href="blah-blah">' + assignment.Topic + '</a>');
+
+    //-   body.push(tr);
+    //- });
+
+    //- $('table.assignment-table').find('tbody').html(body);
+    //- }
+    //- })
+    //- var method = "GET";
+    //- var url = "http://localhost:3000/auther";
+    //- var asynchronous = true;
+    //- ajax.onreadystatechange = function(){
+    //-   if(ajax.readyState === 4){
+    //-     document.getElementById('display');
+    //-   }
+    //- };
+    //- ajax.open(method, url, asynchronous);
+    //- ajax.innerHTML()
+    //- ajax.send();
+    return;
+
+    }
+    //- function resetData(){
+    //- 	$("#city").val("");
+    //- }
+    //- var row=1;
+    //- var entry = document.getElementById("entry");
+    //- entry.addEventListener("click",displayDetails);
+    //- function displayDetails(){
+    //- var cityname = document.getElementById('city').value;
+    //- if(!cityname){
+    //- alert("Please fill the city name");
+    //- return;
+    //- }
+    //- var display=document.getElementById("display");
+    //- var newRow = display.insertRow(row);
+    //- var cell = newRow.insertCell();
+    //- cell.innerHTML = city;
+    //- row++;
+
+
+    
+    //- }
